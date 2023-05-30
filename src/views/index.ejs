@@ -1,0 +1,55 @@
+<%- include('includes/head') %>
+
+    <body>
+        <%- include('includes/nav') %>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2"></div>
+
+                    <div class="col-lg-8 my-3">
+                        <h1 class="text-center">Expenses</h1>
+                        <p class="text-center lead">Create or edit your expense(s) below!</p>
+
+                        <%- include('includes/messages') %>
+
+                        <% if(expenses.length > 0 ) { %>
+
+                            <div class="responsive-table">
+                                <table class="table my-5">
+                                    <thead>
+                                        <tr>
+                                            <td>Prices</td>
+                                            <td>Names of spents</td>
+                                            <td>Dates</td>
+                                            <td>Edits</td>
+                                            <td>Deletes</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody> 
+                                    <%expenses.forEach(expense=> { %>
+                                        <tr>
+                                            <td><%=expense.price%></td>
+                                            <td><%=expense.name%></td>
+                                            <td><%=expense.date%></td>
+                                            <td><a href="/expenses/<%=expense._id%>">Edit</a></td>
+                                            <td><a href="/expenses/delete/<%=expense._id%>" class="text-danger">Delete</a></td>
+                                        </tr>
+                                       <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                         <% } else { %>
+                                <p class="text-center lead">You have no expenses :D</p>
+                            <% } %>
+                    </div>
+
+                    <div class="col-lg-2"></div>
+
+
+
+                </div>
+            </div>
+
+            <%- include('includes/footer') %>
+    </body>
